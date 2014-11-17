@@ -1,5 +1,6 @@
-var ddm = ddm || {};
-ddm.modal = (function ($) {
+var ksl = ksl || {};
+ksl.assets = ksl.assets || {};
+ksl.assets.modal = (function ($) {
 
   /*= helpers =*/
 

@@ -224,7 +224,7 @@
       $('.modal-toggle[data-modal]').each(function (index, toggle) {
         var $toggle = $(toggle);
         var $modal = $($toggle.data('modal'));
-        ddm.modal($modal).addToggles(
+        ksl.assets.modal($modal).addToggles(
           $toggle,
           $modal.find('.modal-toggle')
         );
@@ -233,13 +233,13 @@
 
 
       /* help modals */
-      ddm.modal($('.recycled-modal')).addToggles(
+      ksl.assets.modal($('.recycled-modal')).addToggles(
         $('.recycled-modal').find('.modal-toggle')
       );
 
       $('.recycled-modal-toggle').on('click', function() {
         var title = $(this).data('modal-title');
-        ddm.modal($('.recycled-modal'))
+        ksl.assets.modal($('.recycled-modal'))
           .title(title)
           .open();
       });
