@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>KSL Assets Modal Demo</title>
+  <meta name="description" content="KSL Assets Modal Demo" />
+
+  <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="container.css" rel="stylesheet" />
+
+  <link href="modal.css" rel="stylesheet" />
+  <script src="modal.js"></script>
+
+</head>
+<body>
+
+  <div class="ksl-assets-container">
+    <div class="inner">
+
+      <div class="header">
+        <div class="inner">
+          <h1>Modal Demo</h1>
+        </div>
+      </div>
+
+      <div class="ksl-assets-modal short-modal">
+        <div class="inner">
+          <div class="head">
+            <h1 class="title">Short Modal</h1>
+            <span class="modal-toggle fa fa-2x fa-times"></span>
+          </div>
+          <div class="body">
+            <div class="dummy-content" data-fill="1"></div>
+          </div>
+          <div class="foot">
+            <button class="close-button modal-toggle">close</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ksl-assets-modal form-modal">
+        <div class="inner">
+          <div class="head">
+            <h1 class="title">Modal Form</h1>
+            <span class="modal-toggle fa fa-2x fa-times"></span>
+          </div>
+          <div class="body">
+            <form>
+              <fieldset>
+                <legend>Form</legend>
+                <div>
+                  <label>Text Input</label>
+                  <input type="text" />
+                </div>
+                <div>
+                  <label>Text Area</label>
+                  <textarea></textarea>
+                </div>
+                <div>
+                  <label>Select</label>
+                  <select>
+                    <option></option>
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Radio Input</label>
+                  <label><input type="radio" name="radio" /> option 1</label>
+                  <label><input type="radio" name="radio" /> option 2</label>
+                  <label><input type="radio" name="radio" /> option 3</label>
+                </div>
+                <div>
+                  <label>Checkbox Input</label>
+                  <label><input type="checkbox" name="checkbox" /> option 1</label>
+                  <label><input type="checkbox" name="checkbox" /> option 2</label>
+                  <label><input type="checkbox" name="checkbox" /> option 3</label>
+                </div>
+              </fieldset>
+            </form>
+            <form>
+              <fieldset>
+                <legend>Again, with feeling</legend>
+                <div>
+                  <label>Text Input</label>
+                  <input type="text" />
+                </div>
+                <div>
+                  <label>Text Area</label>
+                  <textarea></textarea>
+                </div>
+                <div>
+                  <label>Select</label>
+                  <select>
+                    <option></option>
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Radio Input</label>
+                  <label><input type="radio" name="radio" /> option 1</label>
+                  <label><input type="radio" name="radio" /> option 2</label>
+                  <label><input type="radio" name="radio" /> option 3</label>
+                </div>
+                <div>
+                  <label>Checkbox Input</label>
+                  <label><input type="checkbox" name="checkbox" /> option 1</label>
+                  <label><input type="checkbox" name="checkbox" /> option 2</label>
+                  <label><input type="checkbox" name="checkbox" /> option 3</label>
+                </div>
+              </fieldset>
+            </form>
+
+          </div>
+          <div class="foot">
+            <button class="close-button modal-toggle">close</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ksl-assets-modal long-modal">
+        <div class="inner">
+          <div class="head">
+            <h1 class="title">Long Modal</h1>
+            <span class="modal-toggle fa fa-2x fa-times"></span>
+          </div>
+          <div class="body">
+            <div class="dummy-content" data-fill="6" data-fin></div>
+          </div>
+          <div class="foot">
+            <button class="close-button modal-toggle">close</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ksl-assets-modal lalalalala-modal">
+        <div class="inner">
+          <div class="head">
+            <h1 class="title">La La La La La</h1>
+            <span class="modal-toggle fa fa-2x fa-times"></span>
+          </div>
+          <div class="body">
+            <img src="http://i.imgur.com/0KlIArS.gif" />
+          </div>
+          <div class="foot">
+            <button class="close-button modal-toggle">close</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ksl-assets-modal recycled-modal">
+        <div class="inner">
+          <div class="head">
+            <h1 class="title">{{Title}}</h1>
+            <span class="modal-toggle fa fa-2x fa-times"></span>
+          </div>
+          <div class="body">
+            <div class="dummy-content" data-fill="1"></div>
+          </div>
+          <div class="foot">
+            <button class="close-button modal-toggle">close</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <div class="header">
+          <div class="reserved"></div>
+        </div>
+
+        <div class="modal-toggles">
+          <button class="modal-toggle" data-modal=".short-modal">Short Modal</button>
+          <button class="modal-toggle" data-modal=".long-modal">Long Modal</button>
+          <button class="modal-toggle" data-modal=".form-modal">Modal Form</button>
+          <button class="modal-toggle" data-modal=".lalalalala-modal">Fun Modal</button>
+          <button class="recycled-modal-toggle" data-modal-title="Recycled Modal 1">Recycled Modal 1</button>
+          <button class="recycled-modal-toggle" data-modal-title="Recycled Modal 2">Recycled Modal 2</button>
+        </div>
+
+        <h3>Modal Issues</h3>
+
+        <ul class="fa-ul issues">
+          <li x="?"><i class="fa-li fa"></i>Mobile Safari: Scroll freeze possible on bottom of modal. (Maybe not an issue since there are rounded corners and margin to indicate end of modal, so user won't be likely to try scrolling past end?)</li>
+          <li x><i class="fa-li fa"></i>Firefox: Modal close transition not happening. (Didn't like unit-less transition values: 0 => 0s)</li>
+          <li x><i class="fa-li fa"></i>Mobile Safari: Cannot scroll page after closing modal.</li>
+          <li x><i class="fa-li fa"></i>Scrolls the page when modal is open.</li>
+          <li x><i class="fa-li fa"></i>Mobile Safari: Momentum scrolling is broken.</li>
+          <li x><i class="fa-li fa"></i>Mobile Safari: Wonky on landscape orientation.</li>
+          <li x><i class="fa-li fa"></i>Doesn't reset scroll position on open.</li>
+          <li x><i class="fa-li fa"></i>IE8: Overlay should be semi-transparent.</li>
+          <li x><i class="fa-li fa"></i>IE8: Positioning problems.</li>
+          <li x><i class="fa-li fa"></i>IE8: Space separating footer from body.</li>
+          <li x><i class="fa-li fa"></i>Elements in modal disappearing.</li>
+          <li x><i class="fa-li fa"></i>IE8: No space after modal and bottom of window.</li>
+          <li x><i class="fa-li fa"></i>IE8: Click outside to close not working.</li>
+          <li x><i class="fa-li fa"></i>IE8: Horizontal scrolling.</li>
+          <li x><i class="fa-li fa"></i>Mobile Safari: Touch outside to close is too sensitive. Closes while trying to scroll edge of screen.</li>
+          <li x><i class="fa-li fa"></i>IE11: Separation between footer and body.</li>
+        </ul>
+
+        <div class="dummy-content" data-fill="6" data-fin></div>
+
+      </div><!-- /.content -->
+
+    </div><!-- /.inner -->
+  </div><!-- /.container -->
+
+  <script>
+    $(function () {
+
+      $('.modal-toggle[data-modal]').each(function (index, toggle) {
+        var $toggle = $(toggle);
+        var $modal = $($toggle.data('modal'));
+        ddm.modal($modal).addToggles(
+          $toggle,
+          $modal.find('.modal-toggle')
+        );
+      });
+
+
+
+      /* help modals */
+      ddm.modal($('.recycled-modal')).addToggles(
+        $('.recycled-modal').find('.modal-toggle')
+      );
+
+      $('.recycled-modal-toggle').on('click', function() {
+        var title = $(this).data('modal-title');
+        ddm.modal($('.recycled-modal'))
+          .title(title)
+          .open();
+      });
+    });
+  </script>
+
+  <script>
+    $('.dummy-content[data-fill]').each(function (index, element) {
+      var $element = $(element);
+      var fill = $element.data('fill');
+      for (var i = 0; i < fill; i++) {
+        $element.append('<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue porta felis non fringilla. Etiam nisl turpis, volutpat ut ipsum id, semper ornare velit. Aliquam non lectus rhoncus, laoreet nisl eget, elementum nisi. Nullam diam ligula, faucibus quis orci rhoncus, blandit facilisis odio. Curabitur iaculis convallis felis ut iaculis. Etiam ut orci ullamcorper ligula elementum elementum vel at odio. Pellentesque feugiat lorem leo, non interdum nisl tristique nec. Suspendisse iaculis urna non convallis.</p>');
+      }
+      if ($element.is('[data-fin]')) {
+        $element.append('<p><a href="http://i.imgur.com/0KlIArS.gif">Fin</a></p>');
+      }
+    });
+  </script>
+
+  <style>
+    /* decorative styles, irrelevant to modal */
+    *, *:before, *:after {
+      -webkit-box-sizing: inherit;
+      -moz-box-sizing: inherit;
+      box-sizing: inherit;
+    }
+
+    html {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body > .ksl-assets-container {
+      padding: 0;
+    }
+
+    body > .ksl-assets-container > .inner > .content {
+      padding: 0 15px;
+    }
+
+    .header > .inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      background-color: #0b162f;
+      color: #fff;
+      width: 100%;
+      padding: 0 20px;
+      height: 40px;
+    }
+
+    .header > .reserved {
+      height: 40px;
+    }
+
+    .header h1 {
+      display: inline-block;
+      font-size: 2em;
+      margin: 0;
+      margin-left: 15px;
+      line-height: 40px;
+      white-space: nowrap;
+    }
+
+    .fa-ul {
+      position: relative;
+    }
+
+    .issues li i {
+      color: red;
+    }
+
+    .issues li i:before {
+      content: "\f00d"; /* .fa-times */
+      visibility: visible;
+    }
+
+    .issues li[x] {
+      text-decoration: line-through;
+    }
+
+    .issues li[x] i {
+      color: green;
+    }
+
+    .issues li[x] i:before {
+      content: "\f00c"; /* .fa-check */
+    }
+
+    .issues li[x='?'] {
+      text-decoration: none;
+    }
+
+    .issues li[x='?'] i:before {
+      content: "\f128"; /* fa-question */
+      color: blue;
+    }
+
+    .ksl-assets-modal .inner .head .modal-toggle,
+    .ksl-assets-modal .inner .head .title {
+      line-height: 50px;
+    }
+
+    .modal-toggles {
+      margin-top: 20px;
+    }
+
+    .modal-toggles button {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .lalalalala-modal img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 400px) {
+      .lalalalala-modal img {
+        max-width: 50%;
+      }
+    }
+
+  </style>
+</body>
+</html>
