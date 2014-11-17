@@ -1,0 +1,27 @@
+{
+  "name": "ddm-modal",
+  "homepage": "https://github.com/deseretdigital-ui/ddm-modal",
+  "authors": [
+    "Joshua Stoutenburg <jehoshua02@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "gulp",
+    "gulpfile.js",
+    "package.json",
+    "src",
+    "example"
+  ],
+  "main": [
+    "./dist/modal.css",
+    "./dist/modal.js"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7 <3"
+  }
+}
