@@ -1,9 +1,9 @@
-.ddm-modal *, .ddm-modal *:after, .ddm-modal *:before {
+.ksl-assets-modal *, .ksl-assets-modal *:after, .ksl-assets-modal *:before {
   -mox-box-sizing: inherit;
   -webkit-box-sizing: inherit;
   box-sizing: inherit; }
 
-.ddm-modal {
+.ksl-assets-modal {
   -mox-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -28,20 +28,20 @@
   transition: opacity 0.3s, top 0s 0.3s; }
 
 /* hack padding-bottom using pseudo element for ie8 */
-.ddm-modal:after {
+.ksl-assets-modal:after {
   content: "";
   display: block;
   height: 0;
   margin: 0 -3.125%;
   padding-bottom: 3.125%; }
 
-.ddm-modal--open {
+.ksl-assets-modal.modal-open {
   opacity: 1;
   top: 0;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s; }
 
-.ddm-modal__inner {
+.ksl-assets-modal > .inner {
   min-width: 300px;
   max-width: 600px;
   width: 93.75%;
@@ -55,21 +55,21 @@
   -webkit-transition: top 0.3s;
   transition: top 0.3s; }
 
-.ddm-modal--open > .ddm-modal__inner {
+.ksl-assets-modal.modal-open > .inner {
   top: 0; }
 
-.ddm-modal .inner > * {
+.ksl-assets-modal .inner > * {
   background-color: #fff;
   padding: 0 20px;
   margin: 0; }
 
-.ddm-modal .inner > :first-child {
+.ksl-assets-modal .inner > :first-child {
   border-radius: 6px 6px 0 0; }
 
-.ddm-modal .inner > :last-child {
+.ksl-assets-modal .inner > :last-child {
   border-radius: 0 0 6px 6px; }
 
-.ddm-modal > .inner > .head {
+.ksl-assets-modal > .inner > .head {
   background-color: #5b92f4;
   color: #fff;
   height: 50px;
@@ -78,7 +78,7 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.ddm-modal > .inner > .head > .title {
+.ksl-assets-modal > .inner > .head > .title {
   margin: 0;
   vertical-align: middle;
   font-size: 18px;
@@ -87,7 +87,7 @@
   font-weight: bold;
   text-align: left; }
 
-.ddm-modal > .inner > .head > .modal-toggle {
+.ksl-assets-modal > .inner > .head > .modal-toggle {
   display: block;
   position: absolute;
   right: 0;
@@ -97,17 +97,17 @@
   text-align: center;
   cursor: pointer; }
 
-.ddm-modal > .inner > .body {
+.ksl-assets-modal > .inner > .body {
   padding-top: 10px;
   overflow: auto;
   /* force to wrap margin of children */ }
 
-.ddm-modal > .inner > .body > :first-child {
+.ksl-assets-modal > .inner > .body > :first-child {
   margin-top: 0; }
 
-.ddm-modal > .inner > .body > :last-child {
+.ksl-assets-modal > .inner > .body > :last-child {
   margin-bottom: 0; }
 
-.ddm-modal > .inner > .foot {
+.ksl-assets-modal > .inner > .foot {
   padding: 20px;
   text-align: center; }
