@@ -24,8 +24,8 @@
   background: rgba(0, 0, 0, 0.6);
   /* create transition effect */
   opacity: 0;
-  -webkit-transition: opacity 0.3s, top 0s 0.3s;
-  transition: opacity 0.3s, top 0s 0.3s; }
+  -webkit-transition: opacity .3s, top 0s .3s;
+  transition: opacity .3s, top 0s .3s; }
 
 /* hack padding-bottom using pseudo element for ie8 */
 .ksl-assets-modal:after {
@@ -38,8 +38,8 @@
 .ksl-assets-modal.modal-open {
   opacity: 1;
   top: 0;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s; }
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s; }
 
 .ksl-assets-modal > .inner {
   min-width: 300px;
@@ -52,8 +52,8 @@
   z-index: 2;
   /* create transition */
   top: -50%;
-  -webkit-transition: top 0.3s;
-  transition: top 0.3s; }
+  -webkit-transition: top .3s;
+  transition: top .3s; }
 
 .ksl-assets-modal.modal-open > .inner {
   top: 0; }
