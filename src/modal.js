@@ -100,6 +100,7 @@ ksl.assets.modal = (function ($) {
 
     /* private */
     var modal = this;
+    var preventCloseModal = false;
     var container = new Container($container);
     helpers.scrollCap($element);
 
@@ -121,8 +122,13 @@ ksl.assets.modal = (function ($) {
       return $element.hasClass('modal-open');
     };
 
+    this.preventClose = function(prevent) {
+      preventCloseModal = prevent || false;
+    };
+
     this.open = function () {
       $element.trigger('open');
+      return this;
     };
 
     this.close = function () {
@@ -168,7 +174,7 @@ ksl.assets.modal = (function ($) {
     });
 
     $element.on('click', function (event) {
-      if (event.target === this) {
+      if (event.target === this && !preventCloseModal) {
         $element.trigger('close');
       }
     });

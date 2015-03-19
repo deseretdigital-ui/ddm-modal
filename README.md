@@ -144,9 +144,10 @@ Javascript object that represents a single modal.
 | `addToggles($toggle1, $toggle2, ...)` | Attaches one or more toggles to the modal component.                     |
 | `title(title)`                        | Sets the title of the modal element. Useful for reusing a modal element. |
 | `body(body)`                          | Sets the body of the modal element. Useful for reusing a modal element.  |
+| `preventClose(bool)`                  | Sets whether or not clicking outside the modal will close or not.        |
 
 | Event    | Description                                                        |
 |----------|--------------------------------------------------------------------|
 | `open`   | Triggered when the modal begins opening.                           |
-| `close`  | Triggered when the modal begins closing.                          |
+| `close`  | Triggered when the modal begins closing.                           |
 | `toggle` | Triggered when a toggle is clicked. Triggers open or close events. |

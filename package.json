@@ -1,6 +1,7 @@
 {
   "name": "ddm-modal",
   "description": "Modal component for use in DDM projects.",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/deseretdigital-ui/ddm-modal.git"
