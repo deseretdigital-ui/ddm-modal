@@ -175,6 +175,20 @@
         </div>
       </div>
 
+      <div class="ksl-assets-modal prevent-close-modal">
+        <div class="inner">
+          <div class="head">
+            <h1 class="title">Prevent Close</h1>
+          </div>
+          <div class="body">
+            <p>You must click button to close. There is no other way.</p>
+          </div>
+          <div class="foot">
+            <button class="close-button modal-toggle">close</button>
+          </div>
+        </div>
+      </div>
+
       <div class="content">
 
         <div class="header">
@@ -188,6 +202,7 @@
           <button class="modal-toggle" data-modal=".lalalalala-modal">Fun Modal</button>
           <button class="recycled-modal-toggle" data-modal-title="Recycled Modal 1">Recycled Modal 1</button>
           <button class="recycled-modal-toggle" data-modal-title="Recycled Modal 2">Recycled Modal 2</button>
+          <button class="prevent-close-modal-toggle" data-modal=".prevent-close-modal">Prevent Close Modal</button>
         </div>
 
         <h3>Modal Issues</h3>
@@ -243,6 +258,18 @@
           .title(title)
           .open();
       });
+
+
+
+      /* prevent close */
+      ksl.assets.modal($('.prevent-close-modal')).addToggles(
+        $('.prevent-close-modal-toggle')
+      ).preventClose(true);
+
+      $('.prevent-close-modal .modal-toggle').on('click', function () {
+        ksl.assets.modal($('.prevent-close-modal')).close();
+      });
+
     });
   </script>
 
