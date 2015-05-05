@@ -1,11 +1,7 @@
 .ksl-assets-modal *, .ksl-assets-modal *:after, .ksl-assets-modal *:before {
-  -mox-box-sizing: inherit;
-  -webkit-box-sizing: inherit;
   box-sizing: inherit; }
 
 .ksl-assets-modal {
-  -mox-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: fixed;
   top: -100%;
@@ -25,7 +21,7 @@
   /* create transition effect */
   opacity: 0;
   -webkit-transition: opacity 0.3s, top 0s 0.3s;
-  transition: opacity 0.3s, top 0s 0.3s; }
+          transition: opacity 0.3s, top 0s 0.3s; }
 
 /* hack padding-bottom using pseudo element for ie8 */
 .ksl-assets-modal:after {
@@ -39,13 +35,13 @@
   opacity: 1;
   top: 0;
   -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s; }
+          transition: opacity 0.3s; }
 
 .ksl-assets-modal > .inner {
   min-width: 300px;
   max-width: 600px;
   width: 93.75%;
-  width: -webkit-calc(100% - 20px);
+  width: calc(100% - 20px);
   margin: 0 auto;
   box-shadow: 0 0 16px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -53,7 +49,7 @@
   /* create transition */
   top: -50%;
   -webkit-transition: top 0.3s;
-  transition: top 0.3s; }
+          transition: top 0.3s; }
 
 .ksl-assets-modal.modal-open > .inner {
   top: 0; }
