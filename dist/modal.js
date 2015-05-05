@@ -58,50 +58,13 @@ ksl.assets.modal = (function ($) {
 
 
 
-  /*= Container constructor =*/
-
-  var Container = function ($element) {
-
-    /* private */
-
-    var container = this;
-    $element.addClass('ksl-assets-container');
-    helpers.scrollCap($element.find('> .inner > .content'));
-
-    var lockScroll = function () {
-      $element.addClass('scroll-lock');
-    };
-
-    var unlockScroll = function () {
-      $element.removeClass('scroll-lock');
-    };
-
-
-
-    /* public */
-
-    this.open = function (openClass) {
-      $element.addClass(openClass);
-      lockScroll();
-    };
-
-    this.close = function (openClass) {
-      $element.removeClass(openClass);
-      unlockScroll();
-    };
-
-  };
-
-
-
   /*= Modal constructor =*/
 
-  var Modal = function ($element, $container) {
+  var Modal = function ($element) {
 
     /* private */
     var modal = this;
     var preventCloseModal = false;
-    var container = new Container($container);
     helpers.scrollCap($element);
 
 
@@ -157,12 +120,10 @@ ksl.assets.modal = (function ($) {
     $element.on('open', function () {
       $element.scrollTop(0);
       $element.addClass('modal-open');
-      container.open('modal-open');
     });
 
     $element.on('close', function () {
       $element.removeClass('modal-open');
-      container.close('modal-open');
     });
 
     $element.on('toggle', function () {
@@ -188,8 +149,7 @@ ksl.assets.modal = (function ($) {
     $element = $element.eq(0); // only handles one modal at a time
     var api = $element.data('modal-api');
     if (!api) {
-      var $container = $('body > .ksl-assets-container');
-      api = new Modal($element, $container);
+      api = new Modal($element);
       $element.data('modal-api', api);
     }
     return api;

@@ -15,38 +15,20 @@ Attach files:
 
 The modal also relies on jQuery, which you probably already have somewhere.
 
-The modal component relies on the same html structure as the menu component.
-
 ```html
-<body>
-
-  <div class="ksl-assets-container">
-    <div class="inner">
-
-      <!-- modal elements here. -->
-
-      <div class="ksl-assets-modal">
-        <div class="inner">
-          <div class="head">
-            <!-- anything you want here -->
-          </div>
-          <div class="body">
-            <!-- anything you want here -->
-          </div>
-          <div class="foot">
-            <!-- anything you want here -->
-          </div>
-        </div>
-      </div>
-
-      <div class="content">
-        <!-- your content here! -->
-      </div><!-- /.content -->
-
-    </div><!-- /.inner -->
-  </div><!-- /.container -->
-
-</body>
+<div class="ksl-assets-modal">
+  <div class="inner">
+    <div class="head">
+      <!-- anything you want here -->
+    </div>
+    <div class="body">
+      <!-- anything you want here -->
+    </div>
+    <div class="foot">
+      <!-- anything you want here -->
+    </div>
+  </div>
+</div>
 ```
 
 Then initialize with javascript.
