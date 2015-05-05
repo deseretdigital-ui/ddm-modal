@@ -2,29 +2,72 @@ var ksl = ksl || {};
 ksl.assets = ksl.assets || {};
 ksl.assets.modal = (function ($) {
 
+  var scroll = {
+    atTop: function (el, delta) {
+      delta = delta || 0;
+      return el.scrollTop + delta <= 0;
+    },
+    atBottom: function (el, delta) {
+      delta = delta || 0;
+      var currentScroll = el.scrollTop + el.offsetHeight;
+      return currentScroll + delta >= el.scrollHeight;
+    },
+    cap: function (el) {
+      if (this.atTop(el)) {
+        el.scrollTop = 1;
+      } else if (this.atBottom(el)) {
+        el.scrollTop = el.scrollTop - 1;
+      }
+    },
+    hasStuff: function (el) {
+      // is there stuff to scroll?
+      return el.offsetHeight < el.scrollHeight;
+    },
+    isolate: function (el, eventNamespace) {
+      var scroll = this;
+      var $element = $(el);
+
+      // for mouse devices
+      $element.on('wheel.scroll-isolate' + eventNamespace, function (event) {
+        var el = this;
+
+        // nothing to scroll
+        if (!scroll.hasStuff(el)) {
+          event.preventDefault();
+          return;
+        }
+
+        // cap scroll if would leak to parent
+        var delta = parseInt(event.originalEvent.deltaY, 10);
+        var outOfBounds = scroll.atTop(el, delta) || scroll.atBottom(el, delta);
+        if (outOfBounds) {
+          scroll.cap(el);
+          return;
+        }
+
+        // everything else
+        event.stopImmediatePropagation();
+      });
+
+      // for touch devices
+      $element.on('touchmove.scroll-isolate' + eventNamespace, function(event) {
+        var el = this;
+
+        // nothing to scroll
+        if (!scroll.hasStuff(el)) {
+          event.preventDefault();
+          return;
+        }
+
+        // cap scroll prevents bounce on parents
+        scroll.cap(el);
+      });
+    }
+  };
+
   /*= helpers =*/
 
   var helpers = {};
-
-  helpers.scrollCap = function ($element) {
-    var cap = function () {
-      var scrollTop = $element.scrollTop();
-      var minScrollTop = 0;
-      var maxScrollTop = $element.get(0).scrollHeight - $element.height() - 1;
-
-      if (scrollTop < minScrollTop) {
-        $element.scrollTop(minScrollTop);
-      } else if (scrollTop > maxScrollTop) {
-        $element.scrollTop(maxScrollTop);
-      }
-    };
-
-    $(function () {
-      $element.on('touchstart.scroll-cap', cap);
-      cap();
-    });
-
-  };
 
   helpers.styleSupported = (function () {
     var supported = [];
@@ -65,7 +108,7 @@ ksl.assets.modal = (function ($) {
     /* private */
     var modal = this;
     var preventCloseModal = false;
-    helpers.scrollCap($element);
+    scroll.isolate($element.get(0), '.ddm-modal');
 
 
 
@@ -138,6 +181,10 @@ ksl.assets.modal = (function ($) {
       if (event.target === this && !preventCloseModal) {
         $element.trigger('close');
       }
+    });
+
+    $element.on('wheel', function () {
+      event.preventDefault();
     });
 
   };
