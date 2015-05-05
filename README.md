@@ -8,7 +8,6 @@ Creates a modal. See the [demo](http://creatives.deseretdigital.com/ksl-assets/b
 Attach files:
 
 ```html
-<script src="ksl-assets/static/components/common.js"></script>
 <link href="ksl-assets/static/components/modal/modal.css" rel="stylesheet" type="text/css" />
 <script src="ksl-assets/static/components/modal/modal.js"></script>
 ```
