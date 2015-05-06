@@ -225,7 +225,7 @@
       $('.modal-toggle[data-modal]').each(function (index, toggle) {
         var $toggle = $(toggle);
         var $modal = $($toggle.data('modal'));
-        ksl.assets.modal($modal).addToggles(
+        ddm.modal($modal).addToggles(
           $toggle,
           $modal.find('.modal-toggle')
         );
@@ -234,13 +234,13 @@
 
 
       /* help modals */
-      ksl.assets.modal($('.recycled-modal')).addToggles(
+      ddm.modal($('.recycled-modal')).addToggles(
         $('.recycled-modal').find('.modal-toggle')
       );
 
       $('.recycled-modal-toggle').on('click', function() {
         var title = $(this).data('modal-title');
-        ksl.assets.modal($('.recycled-modal'))
+        ddm.modal($('.recycled-modal'))
           .title(title)
           .open();
       });
@@ -248,12 +248,12 @@
 
 
       /* prevent close */
-      ksl.assets.modal($('.prevent-close-modal')).addToggles(
+      ddm.modal($('.prevent-close-modal')).addToggles(
         $('.prevent-close-modal-toggle')
       ).preventClose(true);
 
       $('.prevent-close-modal .modal-toggle').on('click', function () {
-        ksl.assets.modal($('.prevent-close-modal')).close();
+        ddm.modal($('.prevent-close-modal')).close();
       });
 
     });
