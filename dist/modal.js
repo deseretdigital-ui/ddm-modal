@@ -1,6 +1,15 @@
 var ksl = ksl || {};
 ksl.assets = ksl.assets || {};
-ksl.assets.modal = (function ($) {
+ksl.assets.modal = function () {
+  console.warn('DEPRECATED: ksl.assets.modal() is deprecated. Please use ddm.modal().');
+  console.groupCollapsed('...');
+  console.trace('Trace:');
+  console.groupEnd();
+  return ddm.modal.apply(window, arguments);
+};
+
+var ddm = ddm || {};
+ddm.modal = (function ($) {
 
   var warnDeprecatedSelectors = (function () {
     var selectors = [
