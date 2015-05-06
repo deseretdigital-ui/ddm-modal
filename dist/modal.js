@@ -2,6 +2,72 @@ var ksl = ksl || {};
 ksl.assets = ksl.assets || {};
 ksl.assets.modal = (function ($) {
 
+  var warnDeprecatedSelectors = (function () {
+    var selectors = [
+      {
+        type: 'is',
+        test: '.ksl-assets-modal',
+        selector: '.ksl-assets-modal',
+        replace: '.ddm-modal'
+      },
+      {
+        type: 'is',
+        test: '.modal-open',
+        selector: '.modal-open',
+        replace: '.ddm-modal--open'
+      },
+      {
+        type: 'find',
+        test: '> .inner',
+        selector: '.ksl-assets-modal > .inner',
+        replace: '.ddm-modal__inner'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .head, > .ddm-modal__inner > .head',
+        selector: '.ksl-assets-modal > .inner > .head',
+        replace: '.ddm-modal__head'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .head > .title, > .ddm-modal__inner > .head > .title, > .inner > .ddm-modal__head > .title, > .ddm-modal__inner > .ddm-modal__head > .title',
+        selector: '.ksl-assets-modal > .inner > .head > .title',
+        replace: '.ddm-modal__title'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .body, > .ddm-modal__inner > .body',
+        selector: '.ksl-assets-modal > .inner > .body',
+        replace: '.ddm-modal__body'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .foot, > .ddm-modal__inner > .foot',
+        selector: '.ksl-assets-modal > .inner > .foot',
+        replace: '.ddm-modal__foot'
+      }
+    ];
+
+    var renamings = $.map(selectors, function (item) {
+      return item.selector + ' => ' + item.replace;
+    }).join("\n");
+
+    return function ($element) {
+      $.each(selectors, function (index, item) {
+        var $matches = $element[item.type](item.test);
+        if ($matches.length > 0) {
+          console.warn('DEPRECATED: Selector "' + item.selector + '" is deprecated. Please use "' + item.replace + '".');
+          console.groupCollapsed('...');
+            console.group('Other deprecated selectors:');
+              console.log(renamings);
+            console.groupEnd();
+            console.trace('Stack Trace:');
+          console.groupEnd();
+        }
+      });
+    }
+  })();
+
   var scroll = {
     atTop: function (el, delta) {
       delta = delta || 0;
@@ -108,24 +174,28 @@ ksl.assets.modal = (function ($) {
     /* private */
     var modal = this;
     var preventCloseModal = false;
-    scroll.isolate($element.get(0), '.ddm-modal');
+    scroll.isolate($element.get(0));
+    warnDeprecatedSelectors($element);
 
 
 
     /* public */
 
     this.title = function (title) {
-      $element.find('> .inner > .head > .title').html(title);
+      $element.find('> .inner > .head > .title, .ddm-modal__title').html(title);
       return this;
     };
 
     this.body = function (body) {
-      $element.find('> .inner > .body').html(body);
+      $element.find('> .inner > .body, .ddm-modal__body').html(body);
       return this;
     };
 
     this.isOpen = function () {
-      return $element.hasClass('modal-open');
+      return (
+        $element.hasClass('modal-open')
+        || $element.hasClass('ddm-modal--open')
+      );
     };
 
     this.preventClose = function(prevent) {
@@ -162,11 +232,11 @@ ksl.assets.modal = (function ($) {
 
     $element.on('open', function () {
       $element.scrollTop(0);
-      $element.addClass('modal-open');
+      $element.addClass('modal-open ddm-modal--open');
     });
 
     $element.on('close', function () {
-      $element.removeClass('modal-open');
+      $element.removeClass('modal-open ddm-modal--open');
     });
 
     $element.on('toggle', function () {
