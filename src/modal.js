@@ -1,30 +1,169 @@
+// Console-polyfill. MIT license.
+// https://github.com/paulmillr/console-polyfill
+// Make it safe to do console.log() always.
+(function(global) {
+  'use strict';
+  global.console = global.console || {};
+  var con = global.console;
+  var prop, method;
+  var empty = {};
+  var dummy = function() {};
+  var properties = 'memory'.split(',');
+  var methods = ('assert,clear,count,debug,dir,dirxml,error,exception,group,' +
+     'groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,' +
+     'show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn').split(',');
+  while (prop = properties.pop()) if (!con[prop]) con[prop] = empty;
+  while (method = methods.pop()) if (!con[method]) con[method] = dummy;
+})(typeof window === 'undefined' ? this : window);
+// Using `this` for web workers while maintaining compatibility with browser
+// targeted script loaders such as Browserify or Webpack where the only way to
+// get to the global object is via `window`.
+
 var ksl = ksl || {};
 ksl.assets = ksl.assets || {};
-ksl.assets.modal = (function ($) {
+ksl.assets.modal = function () {
+  console.warn('DEPRECATED: ksl.assets.modal() is deprecated. Please use ddm.modal().');
+  console.groupCollapsed('...');
+    console.trace('Trace:');
+  console.groupEnd();
+  return ddm.modal.apply(window, arguments);
+};
+
+var ddm = ddm || {};
+ddm.modal = (function ($) {
+
+  var warnDeprecatedSelectors = (function () {
+    var selectors = [
+      {
+        type: 'is',
+        test: '.ksl-assets-modal',
+        selector: '.ksl-assets-modal',
+        replace: '.ddm-modal'
+      },
+      {
+        type: 'is',
+        test: '.modal-open',
+        selector: '.modal-open',
+        replace: '.ddm-modal--open'
+      },
+      {
+        type: 'find',
+        test: '> .inner',
+        selector: '.ksl-assets-modal > .inner',
+        replace: '.ddm-modal__inner'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .head, > .ddm-modal__inner > .head',
+        selector: '.ksl-assets-modal > .inner > .head',
+        replace: '.ddm-modal__head'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .head > .title, > .ddm-modal__inner > .head > .title, > .inner > .ddm-modal__head > .title, > .ddm-modal__inner > .ddm-modal__head > .title',
+        selector: '.ksl-assets-modal > .inner > .head > .title',
+        replace: '.ddm-modal__title'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .body, > .ddm-modal__inner > .body',
+        selector: '.ksl-assets-modal > .inner > .body',
+        replace: '.ddm-modal__body'
+      },
+      {
+        type: 'find',
+        test: '> .inner > .foot, > .ddm-modal__inner > .foot',
+        selector: '.ksl-assets-modal > .inner > .foot',
+        replace: '.ddm-modal__foot'
+      }
+    ];
+
+    var renamings = $.map(selectors, function (item) {
+      return item.selector + ' => ' + item.replace;
+    }).join("\n");
+
+    return function ($element) {
+      $.each(selectors, function (index, item) {
+        var $matches = $element[item.type](item.test);
+        if ($matches.length > 0) {
+          console.warn('DEPRECATED: Selector "' + item.selector + '" is deprecated. Please use "' + item.replace + '".');
+          console.groupCollapsed('...');
+            console.group('Other deprecated selectors:');
+              console.log(renamings);
+            console.groupEnd();
+            console.trace('Stack Trace:');
+          console.groupEnd();
+        }
+      });
+    }
+  })();
+
+  var scroll = {
+    atTop: function (el, delta) {
+      delta = delta || 0;
+      return el.scrollTop + delta <= 0;
+    },
+    atBottom: function (el, delta) {
+      delta = delta || 0;
+      var currentScroll = el.scrollTop + el.offsetHeight;
+      return currentScroll + delta >= el.scrollHeight;
+    },
+    cap: function (el) {
+      if (this.atTop(el)) {
+        el.scrollTop = 1;
+      } else if (this.atBottom(el)) {
+        el.scrollTop = el.scrollTop - 1;
+      }
+    },
+    hasStuff: function (el) {
+      // is there stuff to scroll?
+      return el.offsetHeight < el.scrollHeight;
+    },
+    isolate: function (el, eventNamespace) {
+      var scroll = this;
+      var $element = $(el);
+
+      // for mouse devices
+      $element.on('wheel.scroll-isolate' + eventNamespace, function (event) {
+        var el = this;
+
+        // nothing to scroll
+        if (!scroll.hasStuff(el)) {
+          event.preventDefault();
+          return;
+        }
+
+        // cap scroll if would leak to parent
+        var delta = parseInt(event.originalEvent.deltaY, 10);
+        var outOfBounds = scroll.atTop(el, delta) || scroll.atBottom(el, delta);
+        if (outOfBounds) {
+          scroll.cap(el);
+          return;
+        }
+
+        // everything else
+        event.stopImmediatePropagation();
+      });
+
+      // for touch devices
+      $element.on('touchmove.scroll-isolate' + eventNamespace, function(event) {
+        var el = this;
+
+        // nothing to scroll
+        if (!scroll.hasStuff(el)) {
+          event.preventDefault();
+          return;
+        }
+
+        // cap scroll prevents bounce on parents
+        scroll.cap(el);
+      });
+    }
+  };
 
   /*= helpers =*/
 
   var helpers = {};
-
-  helpers.scrollCap = function ($element) {
-    var cap = function () {
-      var scrollTop = $element.scrollTop();
-      var minScrollTop = 0;
-      var maxScrollTop = $element.get(0).scrollHeight - $element.height() - 1;
-
-      if (scrollTop < minScrollTop) {
-        $element.scrollTop(minScrollTop);
-      } else if (scrollTop > maxScrollTop) {
-        $element.scrollTop(maxScrollTop);
-      }
-    };
-
-    $(function () {
-      $element.on('touchstart.scroll-cap', cap);
-      cap();
-    });
-
-  };
 
   helpers.styleSupported = (function () {
     var supported = [];
@@ -58,68 +197,35 @@ ksl.assets.modal = (function ($) {
 
 
 
-  /*= Container constructor =*/
-
-  var Container = function ($element) {
-
-    /* private */
-
-    var container = this;
-    $element.addClass('ksl-assets-container');
-    helpers.scrollCap($element.find('> .inner > .content'));
-
-    var lockScroll = function () {
-      $element.addClass('scroll-lock');
-    };
-
-    var unlockScroll = function () {
-      $element.removeClass('scroll-lock');
-    };
-
-
-
-    /* public */
-
-    this.open = function (openClass) {
-      $element.addClass(openClass);
-      lockScroll();
-    };
-
-    this.close = function (openClass) {
-      $element.removeClass(openClass);
-      unlockScroll();
-    };
-
-  };
-
-
-
   /*= Modal constructor =*/
 
-  var Modal = function ($element, $container) {
+  var Modal = function ($element) {
 
     /* private */
     var modal = this;
     var preventCloseModal = false;
-    var container = new Container($container);
-    helpers.scrollCap($element);
+    scroll.isolate($element.get(0));
+    warnDeprecatedSelectors($element);
 
 
 
     /* public */
 
     this.title = function (title) {
-      $element.find('> .inner > .head > .title').html(title);
+      $element.find('> .inner > .head > .title, .ddm-modal__title').html(title);
       return this;
     };
 
     this.body = function (body) {
-      $element.find('> .inner > .body').html(body);
+      $element.find('> .inner > .body, .ddm-modal__body').html(body);
       return this;
     };
 
     this.isOpen = function () {
-      return $element.hasClass('modal-open');
+      return (
+        $element.hasClass('modal-open')
+        || $element.hasClass('ddm-modal--open')
+      );
     };
 
     this.preventClose = function(prevent) {
@@ -156,13 +262,11 @@ ksl.assets.modal = (function ($) {
 
     $element.on('open', function () {
       $element.scrollTop(0);
-      $element.addClass('modal-open');
-      container.open('modal-open');
+      $element.addClass('modal-open ddm-modal--open');
     });
 
     $element.on('close', function () {
-      $element.removeClass('modal-open');
-      container.close('modal-open');
+      $element.removeClass('modal-open ddm-modal--open');
     });
 
     $element.on('toggle', function () {
@@ -179,6 +283,10 @@ ksl.assets.modal = (function ($) {
       }
     });
 
+    $element.on('wheel', function () {
+      event.preventDefault();
+    });
+
   };
 
 
@@ -188,8 +296,7 @@ ksl.assets.modal = (function ($) {
     $element = $element.eq(0); // only handles one modal at a time
     var api = $element.data('modal-api');
     if (!api) {
-      var $container = $('body > .ksl-assets-container');
-      api = new Modal($element, $container);
+      api = new Modal($element);
       $element.data('modal-api', api);
     }
     return api;

@@ -1,6 +1,6 @@
 # Modal
 
-Creates a modal. See the [demo](http://creatives.deseretdigital.com/ksl-assets/build/static/components/modal/index.html).
+Creates a modal. See the [demo](http://ui.deseretdigital.com/ddm-modal/).
 
 
 ## Setup
@@ -8,45 +8,26 @@ Creates a modal. See the [demo](http://creatives.deseretdigital.com/ksl-assets/b
 Attach files:
 
 ```html
-<script src="ksl-assets/static/components/common.js"></script>
-<link href="ksl-assets/static/components/modal/modal.css" rel="stylesheet" type="text/css" />
-<script src="ksl-assets/static/components/modal/modal.js"></script>
+<link href="bower_components/ddm-modal/dist/modal.css" rel="stylesheet" />
+<script src="bower_components/ddm-modal/dist/modal.js"></script>
 ```
 
 The modal also relies on jQuery, which you probably already have somewhere.
 
-The modal component relies on the same html structure as the menu component.
-
 ```html
-<body>
-
-  <div class="ksl-assets-container">
-    <div class="inner">
-
-      <!-- modal elements here. -->
-
-      <div class="ksl-assets-modal">
-        <div class="inner">
-          <div class="head">
-            <!-- anything you want here -->
-          </div>
-          <div class="body">
-            <!-- anything you want here -->
-          </div>
-          <div class="foot">
-            <!-- anything you want here -->
-          </div>
-        </div>
-      </div>
-
-      <div class="content">
-        <!-- your content here! -->
-      </div><!-- /.content -->
-
-    </div><!-- /.inner -->
-  </div><!-- /.container -->
-
-</body>
+<div class="ddm-modal">
+  <div class="ddm-modal__inner">
+    <div class="ddm-modal__head">
+      <!-- anything you want here -->
+    </div>
+    <div class="ddm-modal__body">
+      <!-- anything you want here -->
+    </div>
+    <div class="ddm-modal__foot">
+      <!-- anything you want here -->
+    </div>
+  </div>
+</div>
 ```
 
 Then initialize with javascript.
@@ -56,7 +37,7 @@ The second element (`$('.modal-1 .modal-toggle')`) binds all the close buttons w
 ```javascript
 $(function () {
 
-  ksl.assets.modal($('.modal-1')).addToggles(
+  ddm.modal($('.modal-1')).addToggles(
     $('.modal-toggle-1'),
     $('.modal-1 .modal-toggle')
   );
@@ -74,7 +55,7 @@ $(function () {
   $('.modal-toggle[data-modal]').each(function (index, toggle) {
     var $toggle = $(toggle);
     var $modal = $($toggle.data('modal'));
-    ksl.assets.modal($modal).addToggles(
+    ddm.modal($modal).addToggles(
       $toggle,
       $modal.find('.modal-toggle')
     );
@@ -114,7 +95,7 @@ $(function () {
 ## API
 
 
-### `ksl.assets.modal($element)`
+### `ddm.modal($element)`
 
 Constructs a new modal object.
 
@@ -127,7 +108,7 @@ Returns a `Modal` object.
 
 ### `$element.modal()`
 
-jQuery plugin and alias for `ksl.assets.modal($element)`. Only defined if it hasn't been
+jQuery plugin and alias for `ddm.modal($element)`. Only defined if it hasn't been
 defined.
 
 
