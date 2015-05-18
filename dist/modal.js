@@ -283,10 +283,6 @@ ddm.modal = (function ($) {
       }
     });
 
-    $element.on('wheel', function () {
-      event.preventDefault();
-    });
-
   };
 
 
