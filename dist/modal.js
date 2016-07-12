@@ -266,10 +266,12 @@ ddm.modal = (function ($) {
 
     $element.on('open', function () {
       $element.scrollTop(0);
+      $element.attr("aria-hidden", "false");
       $element.addClass('modal-open ddm-modal--open');
     });
 
     $element.on('close', function () {
+      $element.attr("aria-hidden", "true");
       $element.removeClass('modal-open ddm-modal--open');
     });
 
