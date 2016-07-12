@@ -126,9 +126,11 @@ ddm.modal = (function ($) {
       // for mouse devices
       $element.on('wheel.scroll-isolate' + eventNamespace, function (event) {
         var el = this;
+        var allowScrollObject = $(event.target).closest('.allowScroll');
+        var allowScroll = (allowScrollObject && allowScrollObject.length) ? true  : false;
 
         // nothing to scroll
-        if (!scroll.hasStuff(el)) {
+        if (!allowScroll && !scroll.hasStuff(el)) {
           event.preventDefault();
           return;
         }
@@ -148,9 +150,11 @@ ddm.modal = (function ($) {
       // for touch devices
       $element.on('touchmove.scroll-isolate' + eventNamespace, function(event) {
         var el = this;
+        var allowScrollObject = $(event.target).closest('.allowScroll');
+        var allowScroll = (allowScrollObject && allowScrollObject.length) ? true  : false;
 
         // nothing to scroll
-        if (!scroll.hasStuff(el)) {
+        if (!allowScroll && !scroll.hasStuff(el)) {
           event.preventDefault();
           return;
         }
@@ -211,6 +215,9 @@ ddm.modal = (function ($) {
 
     /* public */
 
+    // set aria-hidden attribute to true for accessibility purposes
+    $element.attr("aria-hidden", "true");
+
     this.title = function (title) {
       $element.find('> .inner > .head > .title, .ddm-modal__title').html(title);
       return this;
@@ -262,10 +269,12 @@ ddm.modal = (function ($) {
 
     $element.on('open', function () {
       $element.scrollTop(0);
+      $element.attr("aria-hidden", "false");
       $element.addClass('modal-open ddm-modal--open');
     });
 
     $element.on('close', function () {
+      $element.attr("aria-hidden", "true");
       $element.removeClass('modal-open ddm-modal--open');
     });
 
