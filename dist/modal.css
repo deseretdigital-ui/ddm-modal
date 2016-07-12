@@ -1,7 +1,9 @@
-.ksl-assets-modal *, .ksl-assets-modal *:after, .ksl-assets-modal *:before, .ddm-modal *, .ddm-modal *:after, .ddm-modal *:before {
+.ksl-assets-modal *, .ksl-assets-modal *:after, .ksl-assets-modal *:before,
+.ddm-modal *, .ddm-modal *:after, .ddm-modal *:before {
   box-sizing: inherit; }
 
-.ksl-assets-modal, .ddm-modal {
+.ksl-assets-modal,
+.ddm-modal {
   box-sizing: border-box;
   position: fixed;
   top: -100%;
@@ -24,20 +26,23 @@
           transition: opacity .3s, top 0s .3s; }
 
 /* hack padding-bottom using pseudo element for ie8 */
-.ksl-assets-modal:after, .ddm-modal:after {
+.ksl-assets-modal:after,
+.ddm-modal:after {
   content: "";
   display: block;
   height: 0;
   margin: 0 -3.125%;
   padding-bottom: 3.125%; }
 
-.ksl-assets-modal.modal-open, .ddm-modal--open {
+.ksl-assets-modal.modal-open,
+.ddm-modal--open {
   opacity: 1;
   top: 0;
   -webkit-transition: opacity .3s;
           transition: opacity .3s; }
 
-.ksl-assets-modal > .inner, .ddm-modal__inner {
+.ksl-assets-modal > .inner,
+.ddm-modal__inner {
   min-width: 300px;
   max-width: 600px;
   width: 93.75%;
@@ -51,21 +56,26 @@
   -webkit-transition: top .3s;
           transition: top .3s; }
 
-.ksl-assets-modal.modal-open > .inner, .ddm-modal--open > .ddm-modal__inner {
+.ksl-assets-modal.modal-open > .inner,
+.ddm-modal--open > .ddm-modal__inner {
   top: 0; }
 
-.ksl-assets-modal .inner > *, .ddm-modal__inner > * {
+.ksl-assets-modal .inner > *,
+.ddm-modal__inner > * {
   background-color: #fff;
   padding: 0 20px;
   margin: 0; }
 
-.ksl-assets-modal .inner > :first-child, .ddm-modal__inner > :first-child {
+.ksl-assets-modal .inner > :first-child,
+.ddm-modal__inner > :first-child {
   border-radius: 6px 6px 0 0; }
 
-.ksl-assets-modal .inner > :last-child, .ddm-modal__inner > :last-child {
+.ksl-assets-modal .inner > :last-child,
+.ddm-modal__inner > :last-child {
   border-radius: 0 0 6px 6px; }
 
-.ksl-assets-modal > .inner > .head, .ddm-modal__head {
+.ksl-assets-modal > .inner > .head,
+.ddm-modal__head {
   background-color: #5b92f4;
   color: #fff;
   height: 50px;
@@ -74,7 +84,8 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.ksl-assets-modal > .inner > .head > .title, .ddm-modal__title {
+.ksl-assets-modal > .inner > .head > .title,
+.ddm-modal__title {
   margin: 0;
   vertical-align: middle;
   font-size: 18px;
@@ -83,7 +94,8 @@
   font-weight: bold;
   text-align: left; }
 
-.ksl-assets-modal > .inner > .head > .modal-toggle, .ddm-modal__head > .modal-toggle {
+.ksl-assets-modal > .inner > .head > .modal-toggle,
+.ddm-modal__head > .modal-toggle {
   display: block;
   position: absolute;
   right: 0;
@@ -94,17 +106,21 @@
   text-align: center;
   cursor: pointer; }
 
-.ksl-assets-modal > .inner > .body, .ddm-modal__body {
+.ksl-assets-modal > .inner > .body,
+.ddm-modal__body {
   padding-top: 10px;
   overflow: auto;
   /* force to wrap margin of children */ }
 
-.ksl-assets-modal > .inner > .body > :first-child, .ddm-modal__body > :first-child {
+.ksl-assets-modal > .inner > .body > :first-child,
+.ddm-modal__body > :first-child {
   margin-top: 0; }
 
-.ksl-assets-modal > .inner > .body > :last-child, .ddm-modal__body > :last-child {
+.ksl-assets-modal > .inner > .body > :last-child,
+.ddm-modal__body > :last-child {
   margin-bottom: 0; }
 
-.ksl-assets-modal > .inner > .foot, .ddm-modal__foot {
+.ksl-assets-modal > .inner > .foot,
+.ddm-modal__foot {
   padding: 20px;
   text-align: center; }
