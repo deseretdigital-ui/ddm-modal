@@ -320,3 +320,8 @@ ddm.modal = (function ($) {
 
 
 })(jQuery);
+
+// Allows webpack projects to easily import this bundle
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = ddm.modal;
+}
